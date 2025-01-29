@@ -22,11 +22,14 @@ require("lazy").setup({
     { "williamboman/mason.nvim", "williamboman/mason.lspconfig.nvim", "neovim/nvim-lspconfig"},
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "nvim-treesitter/nvim-treesitter"},
-    { "nvim-tree/nvim-tree.lua"},
-  	dependencies = {
-    		"nvim-tree/nvim-web-devicons",},
-    { "nvim-telescope/telescope.nvim",
-    	dependencies = {"nvim-lua/plenary.nvim"}},
 
-	
+    --{ "nvim-tree/nvim-tree.lua"},
+  	--dependencies = {
+    		--"nvim-tree/nvim-web-devicons",},
+
+    { "nvim-telescope/telescope.nvim",
+    	dependencies = {"nvim-lua/plenary.nvim"}}
 })
+
+
+

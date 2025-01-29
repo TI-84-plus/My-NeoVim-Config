@@ -1,3 +1,6 @@
+vim.keymap.set("", "<Space>", "<Nop>")
+vim.g.mapleader = " "
+
 require("plugins")
 
 require("mason").setup{}
@@ -82,24 +85,22 @@ require('lspconfig').clangd.setup({
   capabilities = capabilities,
 })
 
+require('telescope').setup {
+	defaults = {
+		file_ignore_patterns = {
+			".ignore"
+		}
+	}
+}
 
 
-
-require("nvim-tree").setup{}
-
-vim.keymap.set('n', '<C-W>', ':NvimTreeToggle<CR>')
-
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+-- Telescope
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Telescope help tags' })
 
 
-
-
-vim.g.mapleader = " "
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
@@ -121,11 +122,13 @@ vim.keymap.set("n", "<A-j>", "<C-d>")
 
 vim.opt.number = true
 
-vim.opt.timeoutlen = 100
+vim.opt.timeoutlen = 300
 
 vim.keymap.set("n", "<Tab>", ':bn!<CR>')
 
 vim.keymap.set("n", "<S-Tab>", ':bp!<CR>')
+
+vim.keymap.set("n", "<leader>d", ':bdelete!<CR>')
 
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w!<CR>', { noremap = true})
 
@@ -136,10 +139,4 @@ vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
 
 vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-
-vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-
-
-
-
 
