@@ -55,7 +55,6 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-local cmp = require('cmp')
 
 require('cmp').setup{
 
@@ -66,20 +65,11 @@ require('cmp').setup{
         	vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       		end,
     	},
-
-	mapping = cmp.mapping.preset.insert({
-		['<Tab>'] = cmp.mapping.select_next_item(),
-		['<S-Tab>'] = cmp.mapping.select_prev_item(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-	}),
-	completion = {
-		autocomplete = { require'cmp.types'.cmp.TriggerEvent.TextChanged },
-	},
 	
 	--sources
-    sources = {
-    	{ name = 'nvim_lsp' },
-	},
+    	sources = {
+    		{ name = 'nvim_lsp' }
+  	},
 }
 
 
@@ -93,32 +83,28 @@ require("mason-lspconfig").setup{ensure_installed = {
 
 
 
-
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
+
 
 require('lspconfig').lemminx.setup({
   filetypes = { "xml" },
   capabilities = capabilities
 })
 
-local omnisharp_config = require("omnisharp").default_config
-
-omnisharp_config.capabilities = capabilities
-omnisharp_config.cmd = {
-  "dotnet",
-  vim.fn.stdpath("data") .. "/mason/packages/omnisharp/OmniSharp.dll",
-  "-z",
-  "--hostPID", tostring(vim.fn.getpid()),
-  "--encoding", "utf-8",
-  "--languageserver",
-  "Sdk:IncludePrereleases=true",
-  "FormattingOptions:EnableEditorConfigSupport=true"
-}
-
-require("lspconfig").omnisharp.setup(omnisharp_config)
-
+require('lspconfig').omnisharp.setup({
+	cmd = {
+		"dotnet",
+		vim.fn.stdpath("data")
+		.. "/mason/packages/omnisharp/libexec/OmniSharp.dll" 
+	},
+	filetype = { "cs", "vb", "xml"},
+	enable_editorconfig_support = true,
+	enable_roslyn_analyzers = true,
+	organize_imports_on_format = true,
+	enable_import_completion = true,
+	root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj"),
+})
 
 
 require('lspconfig').clangd.setup({

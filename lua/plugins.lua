@@ -14,6 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	{ "nvim-java/nvim-java"},
+	{ "mfussenegger/nvim-jdtls"},
+
     { "hrsh7th/nvim-cmp"},
     { "hrsh7th/cmp-buffer"},
     { "hrsh7th/cmp-path"},
@@ -28,7 +31,8 @@ require("lazy").setup({
     		--"nvim-tree/nvim-web-devicons",},
 
     { "nvim-telescope/telescope.nvim",
-    	dependencies = {"nvim-lua/plenary.nvim"}}
+    	dependencies = {"nvim-lua/plenary.nvim"}},
+	{ "ilyachur/cmake4vim"}
 })
 
 
