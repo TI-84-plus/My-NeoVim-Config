@@ -148,9 +148,19 @@ vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc
 
 
 --CMake Keys
-vim.keymap.set('n', "<leader>cg", ':CMakeGenerate<CR>')
-vim.keymap.set('n', "<leader>cb", ':CMakeBuild<CR>')
-vim.keymap.set('n', "<leader>cr", ':CMakeRun CMakeSFMLProject<CR>')
+vim.g.cmake_generator = "Ninja" -- or "Unix Makefiles"
+vim.g.cmake_build_dir_location = 'build'
+
+vim.keymap.set("n", "<M-S-p>", function()
+  vim.g.cmake_build_dir_location = 'build'
+  vim.cmd("copen")
+  vim.fn.system("cmake --preset=gcc-release")
+  vim.cmd("CMakeBuild")
+  vim.notify("CMake preset: gcc-release run")
+end, { desc = "Run CMake preset" })
+
+vim.keymap.set('n', '<M-S-r>', ':CMakeRun<CR>')
+--vim.keymap.set('n', '<M-S-b>', ':CMakeBuild<CR>')
 
 
 
