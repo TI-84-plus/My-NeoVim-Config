@@ -14,17 +14,19 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "nvim-java/nvim-java"},
-	{ "mfussenegger/nvim-jdtls"},
+		{ "nvim-java/nvim-java"},
+		{ "mfussenegger/nvim-jdtls"},
 
-    { "hrsh7th/nvim-cmp"},
-    { "hrsh7th/cmp-buffer"},
-    { "hrsh7th/cmp-path"},
-    { "hrsh7th/cmp-cmdline"},
-    { "hrsh7th/cmp-nvim-lsp"},
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-	{ "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
-    { "nvim-treesitter/nvim-treesitter"},
+    	{ "hrsh7th/nvim-cmp"},
+    	{ "hrsh7th/cmp-buffer"},
+    	{ "hrsh7th/cmp-path"},
+    	{ "hrsh7th/cmp-cmdline"},
+    	{ "hrsh7th/cmp-nvim-lsp"},
+    	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    	{ "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
+    	{ "nvim-treesitter/nvim-treesitter"},
+    	{ "scottmckendry/cyberdream.nvim", lazy = false, priority = 1000,},
+		{'windwp/nvim-autopairs', event = "InsertEnter", config = true},
 
     --{ "nvim-tree/nvim-tree.lua"},
   	--dependencies = {

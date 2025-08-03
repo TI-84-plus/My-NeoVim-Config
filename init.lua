@@ -166,7 +166,7 @@ vim.keymap.set('n', '<M-S-r>', ':CMakeRun<CR>')
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "cyberdream"
 
 vim.opt.softtabstop = 4
 
